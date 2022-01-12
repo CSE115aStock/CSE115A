@@ -32,5 +32,5 @@ conda activate stocks
 ### Run app
 ```shell
 export PYTHONPATH=path to cse115a folder
-streamlit run your_script.py
+streamlit run streamlit_app.py
 ```

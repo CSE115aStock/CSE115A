@@ -8,21 +8,29 @@ with st.form("account_creation_form"):
     st.subheader("Create your Account")
 
     user_name = st.text_input('',placeholder='Username')
-    f_name = st.text_input('',placeholder='Firstname')
-    l_name = st.text_input('',placeholder='Lastname')
-    password = st.text_input('',placeholder='Password', type="password")
+    f_name = st.text_input('',placeholder='First name')
+    l_name = st.text_input('',placeholder='Last name')
+    p_word = st.text_input('',placeholder='Password', type="password")
     st.write("Password guidelines: 8 character minimum, uppercase, lowercase, numbers, and special chars")
     confirm_password = st.text_input('',placeholder='Confirm password', type="password")
     email = st.text_input('',placeholder='E-mail address')
+#     store all the input into a dictionary
+    input_data = {
+                "username" : user_name,
+                "first name" : f_name,
+                "last name" : l_name,
+                "password" : p_word,
+                "confirmed password" : confirm_password,
+                "email" : email
+                }
+
     submitted = st.form_submit_button("Sign Up")
 
     # function used to check if a password contains uppercase, lowercase, special character & numeric value
     def IsValidPassword(str):
-
         regex = ("^(?=.*[a-z])(?=." +
                      "*[A-Z])(?=.*\\d)" +
                      "(?=.*[-+_!@#$%^&*., ?]).+$")
-
         # Compile the ReGex
         p = re.compile(regex)
 
@@ -37,21 +45,18 @@ with st.form("account_creation_form"):
         else:
             return False
 
+    # add some logic to check valid input
     if submitted:
-        if user_name == "":
-            st.write("Please enter Username.")
-        elif f_name == "":
-            st.write("Please enter Firstname.")
-        elif l_name == "":
-            st.write("Please enter Lastname.")
-        elif IsValidPassword(password) == False:
-            st.write("Password doesn't follow the password guidelines. Please enter stronger password.")
-        elif confirm_password == "":
-            st.write("Please confirm password.")
-        elif password != confirm_password:
-            st.write("Password and confirm_password are different.")
-        elif email == "":
-            st.write("Please enter email.")
+        for input in input_data.keys():
+            if input_data[input] == "" or (input == "confirmed password" and input_data[input] != p_word):
+                error = f"Please enter correct {input}."
+                error_message = f'<p style="font-family:sans-serif; color:red; font-size: 21px;">{error}</p>'
+                st.markdown(error_message, unsafe_allow_html=True)
+
+        if IsValidPassword(p_word) == False:
+            error = "Password doesn't follow the password guidelines. Please enter a stronger password."
+            error_message = f'<p style="font-family:sans-serif; color:red; font-size: 21px;">{error}</p>'
+            st.markdown(error_message, unsafe_allow_html=True)
 
     st.write("Have an account? Sign In")
 

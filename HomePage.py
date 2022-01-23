@@ -21,8 +21,8 @@ with st.sidebar:
     search = st.button('Search')
     if st.button('My Profile'):
         profile = 1
-    logout = st.button('Log Out')
     settings = st.button('Settings')
+    logout = st.button('Log Out')
 
 # search bar
 if search:

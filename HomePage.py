@@ -19,8 +19,7 @@ local_css('HomePageStyle.css')
 with st.sidebar:
     st.markdown('<p class="name">Social Stock</p>', unsafe_allow_html=True)
     search = st.button('Search')
-    if st.button('My Profile'):
-        profile = 1
+    profile = st.button('My Profile')
     settings = st.button('Settings')
     logout = st.button('Log Out')
 
@@ -28,7 +27,7 @@ with st.sidebar:
 if search:
     stock = st.text_input('Search')
 
-if profile == 1:
+if profile:
     st.title('User\'s Profile')
     st.write('As of ' + dt_string)
 # dummy graph

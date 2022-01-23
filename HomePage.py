@@ -15,18 +15,20 @@ def local_css(file_name):
 
 local_css('HomePageStyle.css')
 
+# menu
 with st.sidebar:
     st.markdown('<p class="name">Social Stock</p>', unsafe_allow_html=True)
     search = st.button('Search')
-    profile = st.button('My Profile')
+    if st.button('My Profile'):
+        profile = 1
     logout = st.button('Log Out')
+    settings = st.button('Settings')
 
 # search bar
 if search:
     stock = st.text_input('Search')
 
-# portfolio
-if profile:
+if profile == 1:
     st.title('User\'s Profile')
     st.write('As of ' + dt_string)
 # dummy graph
@@ -43,3 +45,5 @@ if profile:
 
     with col2:
         st.header("Top Movers")
+
+

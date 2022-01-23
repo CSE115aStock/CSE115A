@@ -6,10 +6,10 @@ import psycopg2
 import numpy as np
 import pandas as pd
 import plotly.express as px
-from UserDataAccess import AddUser
 
 import streamlit as st
 
+from DataAccess import UserDB
 
 
 if __name__ == "__main__":
@@ -36,7 +36,7 @@ if __name__ == "__main__":
     create = st.button("Create Account")
 
     if create:
-        AddUser(conn,f_name,l_name,email,username,password)
+        UserDB.AddUser(conn,f_name,l_name,email,username,password)
 
         #check if added succesfully to user db
         cursor = conn.cursor()
@@ -45,4 +45,5 @@ if __name__ == "__main__":
         print(all_users)
         conn.close()
     """
+
     

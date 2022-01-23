@@ -19,6 +19,7 @@ with st.sidebar:
     st.markdown('<p class="name">Social Stock</p>', unsafe_allow_html=True)
     search = st.button('Search')
     profile = st.button('My Profile')
+    Settings = st.button('Settings')
     logout = st.button('Log Out')
 
 # search bar

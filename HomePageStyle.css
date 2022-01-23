@@ -1,0 +1,13 @@
+
+.stButton>button{
+    box-sizing: 5%;
+    height: 3em;
+    width: 10em;
+    font-size:30px;
+}
+
+.name {
+    font-size:40px;
+    font-weight: bold;
+    text-align: center;
+}
